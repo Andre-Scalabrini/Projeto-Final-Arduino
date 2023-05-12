@@ -20,6 +20,12 @@ const int pinumidade = 35;  // pino analogico 2 ou gpio35
 int umidadevalor = 0;       // armazena valor umidade
 
 // valores temperatura
+int temperatura = 32; // pino de entrada analogica do sensor LM35 no arduino
+
+int grau = 0; // descreve o grau a ser medido pelo sensor
+int TF = 0;   // temperatura final
+
+const int velocidademotor = 33;
 
 void setup() {
   //pinos umidade
@@ -35,9 +41,15 @@ void setup() {
 
   // Resolução de leitura analógica
   analogReadResolution(12);
+//temperatura
+  pinMode(temperatura, INPUT);
+
+  // motor velocidade
+  pinMode(velocidademotor, OUTPUT);
 }
 
 void loop() {
   Lerumidadesolo(); // void umidade solo
   Leituradeluminosidade();  // Void de leitura da quantidade de luz, mostrando também no display (alterarei mais tarde para um void separado)
+  temperaturaeventilacao(); // void temperatura
 }
