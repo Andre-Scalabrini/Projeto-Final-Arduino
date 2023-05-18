@@ -68,7 +68,7 @@ const char* sensor3_topic = "sensor3";
 const char* command1_topic = "command1";
 //const char* command1_topic="command2";
 
-static const char* root_ca PROGMEM = R"EOF(
+static const char* root_ca PRpOGMEM = R"EOF(
 -----BEGIN CERTIFICATE-----
 MIIFazCCA1OgAwIBAgIRAIIQz7DSQONZRGPgu2OCiwAwDQYJKoZIhvcNAQELBQAw
 TzELMAkGA1UEBhMCVVMxKTAnBgNVBAoTIEludGVybmV0IFNlY3VyaXR5IFJlc2Vh
