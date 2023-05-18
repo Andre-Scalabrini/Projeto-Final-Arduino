@@ -1,6 +1,6 @@
-void printLocalTime(){
+void printLocalTime() {
   struct tm timeinfo;
-  if(!getLocalTime(&timeinfo)){
+  if (!getLocalTime(&timeinfo)) {
     Serial.println("Failed to obtain time");
     return;
   }
