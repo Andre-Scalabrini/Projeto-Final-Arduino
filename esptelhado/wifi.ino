@@ -31,6 +31,7 @@ void reconnect() {
 
       client.subscribe(command1_topic);  // adiciona os tópicos aqui
       client.subscribe(command2_topic);
+
     } else {
       Serial.print("falha, reconectando=");
       Serial.print(client.state());
@@ -53,7 +54,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   //  checa outros comandos
     else  if( strcmp(topic,command2_topic) == 0){
-     if (incommingMessage.equals("1")) {  } // faça algo
+     if (incommingMessage.equals("1")) { 
+       Serial.println(opa, tem mensagem aqui);
+      } 
   }
   
 }
