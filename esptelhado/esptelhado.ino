@@ -48,6 +48,8 @@ const char* sensor3_topic = "sensor3";
 
 const char* command1_topic = "command1";
 const char* command2_topic = "command2";
+const char* command3_topic = "command3";
+
 
 static const char* root_ca PROGMEM = R"EOF(
 -----BEGIN CERTIFICATE-----
@@ -83,6 +85,13 @@ emyPxgcYxn/eR44/KJ4EBs+lVDR3veyJm+kXQ99b21/+jh5Xos1AnX5iItreGCc=
 -----END CERTIFICATE-----
 )EOF";  //só nao mexe
 
+// Liga led
+
+int manual = 0;
+int forcaluz = 0;
+const int pinoled = 32;
+int forcamanual = 0;
+
 void setup(){
   Serial.begin(115000);
   while (!Serial) delay(1);
@@ -102,6 +111,7 @@ void setup(){
 void loop(){
   if (!client.connected()) reconnect();
   client.loop();
+  controleluz();
 
   //---- exemplo: publicando valor dos sensores a cada 5 segundos
   unsigned long now = millis();

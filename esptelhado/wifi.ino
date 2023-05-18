@@ -31,6 +31,7 @@ void reconnect() {
 
       client.subscribe(command1_topic);  // adiciona os tópicos aqui
       client.subscribe(command2_topic);
+      client.subscribe(command3_topic);
 
     } else {
       Serial.print("falha, reconectando=");
@@ -48,17 +49,17 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   //--- checa mensagem que foi recebida
   if (strcmp(topic, command1_topic) == 0) {
-    if (incommingMessage.equals("1")) digitalWrite(BUILTIN_LED, LOW);  //  LED on
-    else digitalWrite(BUILTIN_LED, HIGH);                              //  LED off
+    if (incommingMessage.equals("1")) manual = 1;  //  LED on
+    else manual = 0;                              //  LED off
   }
 
   //  checa outros comandos
     else  if( strcmp(topic,command2_topic) == 0){
-     if (incommingMessage.equals("1")) { 
-       Serial.println("opa, tem mensagem aqui");
-      } 
+     forcaluz = incommingMessage.toInt();
   }
-  
+  else  if( strcmp(topic,command3_topic) == 0){
+     forcamanual = incommingMessage.toInt();
+  }
 }
 
 //======================================= enviando como string
