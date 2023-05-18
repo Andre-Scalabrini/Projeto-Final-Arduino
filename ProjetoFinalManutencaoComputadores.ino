@@ -66,7 +66,7 @@ int command1 = 0;
 
 const char* sensor1_topic = "sensor1";
 const char* sensor2_topic = "sensor2";
-const char* sensor3_topic="sensor3";
+const char* sensor3_topic = "sensor3";
 
 const char* command1_topic = "command1";
 //const char* command1_topic="command2";
@@ -109,7 +109,11 @@ emyPxgcYxn/eR44/KJ4EBs+lVDR3veyJm+kXQ99b21/+jh5Xos1AnX5iItreGCc=
 -----END CERTIFICATE-----
 )EOF";  //só nao mexe
 
-
+// CONFIG DESPERTADOR
+#include "time.h"
+const char* ntpServer = "br.pool.ntp.org";
+const long gmtOffset_sec = 0;
+const int daylightOffset_sec = 0;
 
 void setup() {
   //pinos umidade
@@ -120,6 +124,10 @@ void setup() {
   while (!Serial) delay(1);
   setup_wifi();
   pinMode(BUILTIN_LED, OUTPUT);  // Inicializa o LED interno
+
+//vai pegar o horário no servidor
+  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
+  printLocalTime();
 
 
 #ifdef ESP8266
@@ -146,6 +154,7 @@ void setup() {
 }
 
 void loop() {
+  printLocalTime();
   Lerumidadesolo();          // void umidade solo
   Leituradeluminosidade();   // Void de leitura da quantidade de luz, mostrando também no display (alterarei mais tarde para um void separado)
   temperaturaeventilacao();  // void temperatura
@@ -157,7 +166,7 @@ void loop() {
   unsigned long now = millis();
   if (now - lastMsg > 10) {
     lastMsg = now;
-    sensor1 = potValue;       // Colocar o valor dos sensores aqui
+    sensor1 = potValue;      // Colocar o valor dos sensores aqui
     sensor2 = umidadevalor;  // Colocar o valor dos sensores aqui
     sensor3 = TF;
     publishMessage(sensor1_topic, String(sensor1), true);
@@ -165,4 +174,3 @@ void loop() {
     publishMessage(sensor3_topic, String(sensor3), true);
   }
 }
-
