@@ -55,7 +55,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   //  checa outros comandos
     else  if( strcmp(topic,command2_topic) == 0){
      if (incommingMessage.equals("1")) { 
-       Serial.println(opa, tem mensagem aqui);
+       Serial.println("opa, tem mensagem aqui");
       } 
   }
   

@@ -107,9 +107,9 @@ void loop(){
   unsigned long now = millis();
   if (now - lastMsg > 10) {
     lastMsg = now;
-    sensor1 = potValue;      // Colocar o valor dos sensores aqui
-    sensor2 = umidadevalor;  // Colocar o valor dos sensores aqui
-    sensor3 = TF;
+    sensor1 = 0;      // Colocar o valor dos sensores aqui
+    sensor2 = 0;  // Colocar o valor dos sensores aqui
+    sensor3 = 0;
     publishMessage(sensor1_topic, String(sensor1), true);
     publishMessage(sensor2_topic, String(sensor2), true);
     publishMessage(sensor3_topic, String(sensor3), true);
