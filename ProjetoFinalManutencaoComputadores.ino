@@ -59,13 +59,14 @@ unsigned long lastMsg = 0;
 char msg[MSG_BUFFER_SIZE];
 
 
-int sensor1 = potValue;
-float sensor2 = umidadevalor;
+int sensor1 = 0;
+float sensor2 = 0;
+int sensor3 = 0;
 int command1 = 0;
 
 const char* sensor1_topic = "sensor1";
 const char* sensor2_topic = "sensor2";
-//const char*  sensor2_topic="sensor3";
+const char* sensor3_topic="sensor3";
 
 const char* command1_topic = "command1";
 //const char* command1_topic="command2";
@@ -156,10 +157,12 @@ void loop() {
   unsigned long now = millis();
   if (now - lastMsg > 10) {
     lastMsg = now;
-    sensor1 = random(50);       // Colocar o valor dos sensores aqui
-    sensor2 = 20 + random(80);  // Colocar o valor dos sensores aqui
+    sensor1 = potValue;       // Colocar o valor dos sensores aqui
+    sensor2 = umidadevalor;  // Colocar o valor dos sensores aqui
+    sensor3 = TF;
     publishMessage(sensor1_topic, String(sensor1), true);
     publishMessage(sensor2_topic, String(sensor2), true);
+    publishMessage(sensor3_topic, String(sensor3), true);
   }
 }
 
