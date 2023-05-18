@@ -48,8 +48,6 @@ const char* mqtt_username = "minicurso";                                        
 const char* mqtt_password = "Minicurso23";                                        // senha do usuário gerado
 const int mqtt_port = 8883;
 
-
-
 WiFiClientSecure espClient;  // Para conexão sem senha, comente essa linha e descomente a linha sob ela
 //WiFiClient espClient;
 PubSubClient client(espClient);
@@ -57,7 +55,6 @@ unsigned long lastMsg = 0;
 
 #define MSG_BUFFER_SIZE (50)
 char msg[MSG_BUFFER_SIZE];
-
 
 int sensor1 = 0;
 float sensor2 = 0;
@@ -70,10 +67,6 @@ const char* sensor3_topic = "sensor3";
 
 const char* command1_topic = "command1";
 //const char* command1_topic="command2";
-
-
-
-
 
 static const char* root_ca PROGMEM = R"EOF(
 -----BEGIN CERTIFICATE-----
@@ -125,10 +118,9 @@ void setup() {
   setup_wifi();
   pinMode(BUILTIN_LED, OUTPUT);  // Inicializa o LED interno
 
-//vai pegar o horário no servidor
+  //vai pegar o horário no servidor
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
   printLocalTime();
-
 
 #ifdef ESP8266
   espClient.setInsecure();

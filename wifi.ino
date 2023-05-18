@@ -11,6 +11,7 @@ void setup_wifi() {
     delay(500);
     Serial.print(".");
   }
+
   randomSeed(micros());
   Serial.println("\nWiFi conectedo\nIP da rede: ");
   Serial.println(WiFi.localIP());
@@ -56,8 +57,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
   }
   */
 }
-
-
 
 //======================================= enviando como string
 void publishMessage(const char* topic, String payload, boolean retained) {
