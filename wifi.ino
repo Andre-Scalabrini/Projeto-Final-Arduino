@@ -13,7 +13,7 @@ void setup_wifi() {
   }
 
   randomSeed(micros());
-  Serial.println("\nWiFi conectedo\nIP da rede: ");
+  Serial.println("\nWiFi conectado\nIP da rede: ");
   Serial.println(WiFi.localIP());
 }
 
@@ -47,13 +47,15 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   //--- checa mensagem que foi recebida
   if (strcmp(topic, command1_topic) == 0) {
-    if (incommingMessage.equals("1")) digitalWrite(BUILTIN_LED, LOW);  //  LED on
+    if (incommingMessage.equals("1")) Serial.println("ta aqui");  //  LED on
     else digitalWrite(BUILTIN_LED, HIGH);                              //  LED off
   }
 
   //  checa outros comandos
     else  if( strcmp(topic,command2_topic) == 0){
-     if (incommingMessage.equals("1")) {  } // faça algo
+     if (incommingMessage.equals("1")) { 
+
+      } // faça algo
   }
   
 }

@@ -39,8 +39,8 @@ const int velocidademotor = 33;
 #include <WiFiClientSecure.h>
 
 //---- WiFi settings
-const char* ssid = "BPK-ALUNOS";
-const char* password = "2020alunos";
+const char* ssid = "Techmax 2";
+const char* password = "Automotivo#23";
 
 //---- MQTT Broker settings
 const char* mqtt_server = "9a658407ed894e5480f0b771edbc86c6.s1.eu.hivemq.cloud";  // Trocar por url gerada
@@ -106,13 +106,13 @@ emyPxgcYxn/eR44/KJ4EBs+lVDR3veyJm+kXQ99b21/+jh5Xos1AnX5iItreGCc=
 #include "time.h"
 const char* ntpServer = "br.pool.ntp.org";
 const long gmtOffset_sec = 0;
-const int daylightOffset_sec = 0;
+const int daylightOffset_sec = -10800;
 
 void setup() {
   //pinos umidade
   pinMode(ligasensor, OUTPUT);
   pinMode(pinumidade, INPUT);
-
+  printLocalTime();
   Serial.begin(115000);
   while (!Serial) delay(1);
   setup_wifi();
@@ -133,7 +133,7 @@ void setup() {
 
   // Inicia LCD
   lcd.begin(20, 4);
-  -lcd.setBacklight(HIGH);
+  lcd.setBacklight(HIGH);
   lcd.setCursor(0, 0);
 
   // Resolução de leitura analógica
@@ -146,13 +146,13 @@ void setup() {
 }
 
 void loop() {
-  printLocalTime();
+ 
   Lerumidadesolo();          // void umidade solo
   Leituradeluminosidade();   // Void de leitura da quantidade de luz, mostrando também no display (alterarei mais tarde para um void separado)
   temperaturaeventilacao();  // void temperatura
 
-  if (!client.connected()) reconnect();
-  client.loop();
+ // if (!client.connected()) reconnect();
+ // client.loop();
 
   //---- exemplo: publicando valor dos sensores a cada 5 segundos
   unsigned long now = millis();
