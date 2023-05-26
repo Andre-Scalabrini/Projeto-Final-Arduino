@@ -60,6 +60,13 @@ int sensor1 = 0;
 float sensor2 = 0;
 int sensor3 = 0;
 int command1 = 0;
+int command2 = 0;
+int command3 = 0;
+int command4 = 0;
+int command5 = 0;
+int command6 = 0;
+int command7 = 0;
+int command8 = 0;
 
 const char* sensor1_topic = "sensor1";
 const char* sensor2_topic = "sensor2";
@@ -67,6 +74,12 @@ const char* sensor3_topic = "sensor3";
 
 const char* command1_topic = "command1";
 const char* command2_topic = "command2";
+const char* command3_topic = "command1";
+const char* command4_topic = "command2";
+const char* command5_topic = "command1";
+const char* command6_topic = "command2";
+const char* command7_topic = "command1";
+const char* command8_topic = "command2";
 
 static const char* root_ca PROGMEM = R"EOF(
 -----BEGIN CERTIFICATE-----
@@ -107,6 +120,11 @@ emyPxgcYxn/eR44/KJ4EBs+lVDR3veyJm+kXQ99b21/+jh5Xos1AnX5iItreGCc=
 const char* ntpServer = "br.pool.ntp.org";
 const long gmtOffset_sec = 0;
 const int daylightOffset_sec = -10800;
+
+
+// variaveis de controle
+
+int controlevelocidademanual = 0;
 
 void setup() {
   //pinos umidade

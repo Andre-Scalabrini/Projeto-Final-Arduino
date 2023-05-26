@@ -30,7 +30,13 @@ void reconnect() {
       Serial.println("conectado");
 
       client.subscribe(command1_topic);  // adiciona os tópicos aqui
-      client.subscribe(command2_topic);
+      client.subscribe(command2_topic); 
+      client.subscribe(command3_topic);  // adiciona os tópicos aqui
+      client.subscribe(command4_topic);
+      client.subscribe(command5_topic);  // adiciona os tópicos aqui
+      client.subscribe(command6_topic);
+      client.subscribe(command7_topic);  // adiciona os tópicos aqui
+      client.subscribe(command8_topic);
     } else {
       Serial.print("falha, reconectando=");
       Serial.print(client.state());
@@ -58,6 +64,36 @@ void callback(char* topic, byte* payload, unsigned int length) {
       } // faça algo
   }
   
+  else if (strcmp(topic, command3_topic) == 0) {
+    if (incommingMessage.equals("1")) controlevelocidademanual = 0;  // Define controle automático ainda
+    else controlevelocidademanual = 1;                              //  Define controle manual do motor
+  }
+
+  else if (strcmp(topic, command4_topic) == 0) {
+    if (incommingMessage.equals("1")) Serial.println("ta aqui");  //  LED on
+    else digitalWrite(BUILTIN_LED, HIGH);                              //  LED off
+  }
+
+  else if (strcmp(topic, command5_topic) == 0) {
+    if (incommingMessage.equals("1")) Serial.println("ta aqui");  //  LED on
+    else digitalWrite(BUILTIN_LED, HIGH);                              //  LED off
+  }
+
+  else if (strcmp(topic, command6_topic) == 0) {
+    if (incommingMessage.equals("1")) Serial.println("ta aqui");  //  LED on
+    else digitalWrite(BUILTIN_LED, HIGH);                              //  LED off
+  }
+
+  else if (strcmp(topic, command7_topic) == 0) {
+    if (incommingMessage.equals("1")) Serial.println("ta aqui");  //  LED on
+    else digitalWrite(BUILTIN_LED, HIGH);                              //  LED off
+  }
+
+  else if (strcmp(topic, command8_topic) == 0) {
+    if(controlevelocidademanual == 1){ // checa se está no modo de controle manual
+    analogWrite(velocidademotor, incommingMessage.toInt()); // envia a velocidade lida para o motor
+    }
+  }
 }
 
 //======================================= enviando como string
